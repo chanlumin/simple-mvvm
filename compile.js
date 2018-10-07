@@ -88,15 +88,16 @@ CompileUtil = {
 
   },
   getTextVal(vm, expr) {
-    expr.replace(/\{\{([^}]+)\}\}/g,(...arguments)=> {
+    return expr.replace(/\{\{([^}]+)\}\}/g,(...arguments)=> {
       // 通过{{}} 里面的内容去获取获取vm中data的值 然后把它赋值回去
       return this.getVal(vm, arguments[1])
     })
   },
   text(node, vm, expr) { // 文本
-    // console.log(expr)
+    console.log(expr)
     let updateFn = this.updater['textUpdater']
     let value = this.getTextVal(vm, expr)
+    console.log(value)
     updateFn && updateFn(node, value)
   },
   model(node,vm, expr) { // 输入框
